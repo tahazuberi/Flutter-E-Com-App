@@ -1,9 +1,12 @@
-import 'package:first_project/pages/card_details.dart';
+import 'package:first_project/pages/cart_details.dart';
+import 'package:first_project/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'pages/home_screen.dart';
 import 'pages/favourite_screen.dart';
 import 'pages/profile_screen.dart';
 import 'package:provider/provider.dart';
+import 'provider/favourite_provider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 
 
@@ -14,9 +17,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
-  Widget build(context) => MultiProvider{
+  Widget build(context) => MultiProvider(
     providers: [
       ChangeNotifierProvider(create:(_)=>FavoriteProvider()),
+      ChangeNotifierProvider(create:(_)=>CartProvider()),
   ],
   child:MaterialApp(
   title:'E Commerce Shop',
@@ -25,9 +29,9 @@ class MyApp extends StatelessWidget {
   colorSchemeSeed: Colors.red,
   scaffoldBackgroundColor: Colors.grey.shade100,
   ),
-  home:MyHomePage(),
+  home: MyHomePage(title: "E commerce Shop"),
+  ),
   );
-  }
 }
 
 class MyHomePage extends StatefulWidget {

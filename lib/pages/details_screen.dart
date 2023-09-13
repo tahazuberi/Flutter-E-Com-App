@@ -1,6 +1,10 @@
+import 'package:first_project/pages/cart_details.dart';
+import 'package:first_project/provider/cart_provider.dart';
 import 'package:first_project/widgets/available_size.dart';
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+
+
 
 
 class DetailScreen extends StatelessWidget{
@@ -9,6 +13,7 @@ class DetailScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+    final provider = CartProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Details"),
@@ -167,7 +172,15 @@ class DetailScreen extends StatelessWidget{
 
 
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              provider.toggleProduct(product);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartDetails(),
+                )
+              );
+            },
             icon: Icon(Icons.send),
             label:Text("Add to Cart"),
           )
